@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLPHONGMACHTUModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BAOCAODOANHTHU">
+    <Key>
+      <PropertyRef Name="MaBCDT" />
+    </Key>
+    <Property Name="MaBCDT" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="ThangBaoCao" Type="nchar" MaxLength="10" />
+    <Property Name="NamBaoCao" Type="nchar" MaxLength="10" />
+    <Property Name="SoBenhNhan" Type="nchar" MaxLength="10" />
+    <Property Name="TongDoanhThu" Type="nchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="BAOCAODUNGTHUOC">
+    <Key>
+      <PropertyRef Name="MaBaoCaoThuoc" />
+    </Key>
+    <Property Name="MaBaoCaoThuoc" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="ThangBaoCao" Type="int" />
+    <Property Name="NamBaoCao" Type="int" />
+    <Property Name="SoLuongDaDung" Type="ntext" />
+  </EntityType>
+  <EntityType Name="HOADON">
+    <Key>
+      <PropertyRef Name="MaHD" />
+    </Key>
+    <Property Name="MaHD" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="MaBN" Type="nchar" MaxLength="10" />
+    <Property Name="TienKham" Type="int" />
+    <Property Name="TienThuoc" Type="int" />
+  </EntityType>
+  <EntityType Name="PHIEUKHAMBENH">
+    <Key>
+      <PropertyRef Name="MaPhieuKham" />
+    </Key>
+    <Property Name="MaPhieuKham" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="TrieuChung" Type="ntext" />
+    <Property Name="LoaiBenh" Type="ntext" />
+    <Property Name="MaThuoc" Type="nchar" MaxLength="10" />
+    <Property Name="SoLuongDung" Type="ntext" />
+    <Property Name="STTKham" Type="int" />
+    <Property Name="NgayKham" Type="datetime" />
+    <Property Name="GioKham" Type="nvarchar" MaxLength="20" />
+    <Property Name="MaHD" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="QLBENHNHAN">
+    <Key>
+      <PropertyRef Name="MaBN" />
+    </Key>
+    <Property Name="MaBN" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="HoTen" Type="nvarchar" MaxLength="50" />
+    <Property Name="GioiTinh" Type="nvarchar" MaxLength="10" />
+    <Property Name="NgaySinh" Type="datetime" />
+    <Property Name="DiaChi" Type="ntext" />
+    <Property Name="Sdt" Type="nchar" MaxLength="12" />
+    <Property Name="MaPhieuKham" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="QLLich">
+    <Key>
+      <PropertyRef Name="MaLich" />
+    </Key>
+    <Property Name="MaLich" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="MaBN" Type="nchar" MaxLength="10" />
+    <Property Name="NgayDatLich" Type="datetime" />
+    <Property Name="GioDatLich" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="QLTaiKhoan">
+    <Key>
+      <PropertyRef Name="Username" />
+    </Key>
+    <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="THUOC">
+    <Key>
+      <PropertyRef Name="MaThuoc" />
+    </Key>
+    <Property Name="MaThuoc" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="TenThuoc" Type="nvarchar" MaxLength="50" />
+    <Property Name="CachDung" Type="ntext" />
+    <Property Name="DonVi" Type="nchar" MaxLength="10" />
+    <Property Name="GiaThuoc" Type="int" />
+    <Property Name="HanSuDung" Type="datetime" />
+    <Property Name="SoLuongTrongKho" Type="int" />
+  </EntityType>
+  <Association Name="FK_HOADON_QLBENHNHAN">
+    <End Role="QLBENHNHAN" Type="Self.QLBENHNHAN" Multiplicity="0..1" />
+    <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QLBENHNHAN">
+        <PropertyRef Name="MaBN" />
+      </Principal>
+      <Dependent Role="HOADON">
+        <PropertyRef Name="MaBN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHIEUKHAMBENH_HOADON">
+    <End Role="HOADON" Type="Self.HOADON" Multiplicity="0..1" />
+    <End Role="PHIEUKHAMBENH" Type="Self.PHIEUKHAMBENH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HOADON">
+        <PropertyRef Name="MaHD" />
+      </Principal>
+      <Dependent Role="PHIEUKHAMBENH">
+        <PropertyRef Name="MaHD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHIEUKHAMBENH_THUOC">
+    <End Role="THUOC" Type="Self.THUOC" Multiplicity="0..1" />
+    <End Role="PHIEUKHAMBENH" Type="Self.PHIEUKHAMBENH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="THUOC">
+        <PropertyRef Name="MaThuoc" />
+      </Principal>
+      <Dependent Role="PHIEUKHAMBENH">
+        <PropertyRef Name="MaThuoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QLBENHNHAN_PHIEUKHAMBENH">
+    <End Role="PHIEUKHAMBENH" Type="Self.PHIEUKHAMBENH" Multiplicity="0..1" />
+    <End Role="QLBENHNHAN" Type="Self.QLBENHNHAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHIEUKHAMBENH">
+        <PropertyRef Name="MaPhieuKham" />
+      </Principal>
+      <Dependent Role="QLBENHNHAN">
+        <PropertyRef Name="MaPhieuKham" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QLLich_QLBENHNHAN">
+    <End Role="QLBENHNHAN" Type="Self.QLBENHNHAN" Multiplicity="0..1" />
+    <End Role="QLLich" Type="Self.QLLich" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QLBENHNHAN">
+        <PropertyRef Name="MaBN" />
+      </Principal>
+      <Dependent Role="QLLich">
+        <PropertyRef Name="MaBN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLPHONGMACHTUModelStoreContainer">
+    <EntitySet Name="BAOCAODOANHTHU" EntityType="Self.BAOCAODOANHTHU" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BAOCAODUNGTHUOC" EntityType="Self.BAOCAODUNGTHUOC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HOADON" EntityType="Self.HOADON" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PHIEUKHAMBENH" EntityType="Self.PHIEUKHAMBENH" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QLBENHNHAN" EntityType="Self.QLBENHNHAN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QLLich" EntityType="Self.QLLich" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="QLTaiKhoan" EntityType="Self.QLTaiKhoan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="THUOC" EntityType="Self.THUOC" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_HOADON_QLBENHNHAN" Association="Self.FK_HOADON_QLBENHNHAN">
+      <End Role="QLBENHNHAN" EntitySet="QLBENHNHAN" />
+      <End Role="HOADON" EntitySet="HOADON" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHIEUKHAMBENH_HOADON" Association="Self.FK_PHIEUKHAMBENH_HOADON">
+      <End Role="HOADON" EntitySet="HOADON" />
+      <End Role="PHIEUKHAMBENH" EntitySet="PHIEUKHAMBENH" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHIEUKHAMBENH_THUOC" Association="Self.FK_PHIEUKHAMBENH_THUOC">
+      <End Role="THUOC" EntitySet="THUOC" />
+      <End Role="PHIEUKHAMBENH" EntitySet="PHIEUKHAMBENH" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QLBENHNHAN_PHIEUKHAMBENH" Association="Self.FK_QLBENHNHAN_PHIEUKHAMBENH">
+      <End Role="PHIEUKHAMBENH" EntitySet="PHIEUKHAMBENH" />
+      <End Role="QLBENHNHAN" EntitySet="QLBENHNHAN" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QLLich_QLBENHNHAN" Association="Self.FK_QLLich_QLBENHNHAN">
+      <End Role="QLBENHNHAN" EntitySet="QLBENHNHAN" />
+      <End Role="QLLich" EntitySet="QLLich" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f58a88f48e7d4b55bc2d121f90749264" Name="Diagram1">
+        <EntityTypeShape EntityType="QLPHONGMACHTUModel.BAOCAODOANHTHU" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLPHONGMACHTUModel.BAOCAODUNGTHUOC" Width="1.5" PointX="2.625" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLPHONGMACHTUModel.HOADON" Width="1.5" PointX="7.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLPHONGMACHTUModel.PHIEUKHAMBENH" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLPHONGMACHTUModel.QLBENHNHAN" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLPHONGMACHTUModel.QLLich" Width="1.5" PointX="7.5" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLPHONGMACHTUModel.QLTaiKhoan" Width="1.5" PointX="4.625" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLPHONGMACHTUModel.sysdiagram" Width="1.5" PointX="29.625" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLPHONGMACHTUModel.THUOC" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <AssociationConnector Association="QLPHONGMACHTUModel.FK_HOADON_QLBENHNHAN" ManuallyRouted="false" />
+        <AssociationConnector Association="QLPHONGMACHTUModel.FK_PHIEUKHAMBENH_HOADON" ManuallyRouted="false" />
+        <AssociationConnector Association="QLPHONGMACHTUModel.FK_PHIEUKHAMBENH_THUOC" ManuallyRouted="false" />
+        <AssociationConnector Association="QLPHONGMACHTUModel.FK_QLBENHNHAN_PHIEUKHAMBENH" ManuallyRouted="false" />
+        <AssociationConnector Association="QLPHONGMACHTUModel.FK_QLLich_QLBENHNHAN" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

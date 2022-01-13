@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLPHONGMACHTUModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BAOCAODOANHTHU">
+    <Key>
+      <PropertyRef Name="MaBCDT" />
+    </Key>
+    <Property Name="MaBCDT" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="ThangBaoCao" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="NamBaoCao" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="SoBenhNhan" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="TongDoanhThu" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="BAOCAODUNGTHUOC">
+    <Key>
+      <PropertyRef Name="MaBaoCaoThuoc" />
+    </Key>
+    <Property Name="MaBaoCaoThuoc" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="ThangBaoCao" Type="Int32" />
+    <Property Name="NamBaoCao" Type="Int32" />
+    <Property Name="SoLuongDaDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="HOADON">
+    <Key>
+      <PropertyRef Name="MaHD" />
+    </Key>
+    <Property Name="MaHD" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="MaBN" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="TienKham" Type="Int32" />
+    <Property Name="TienThuoc" Type="Int32" />
+    <NavigationProperty Name="QLBENHNHAN" Relationship="Self.FK_HOADON_QLBENHNHAN" FromRole="HOADON" ToRole="QLBENHNHAN" />
+    <NavigationProperty Name="PHIEUKHAMBENHs" Relationship="Self.FK_PHIEUKHAMBENH_HOADON" FromRole="HOADON" ToRole="PHIEUKHAMBENH" />
+  </EntityType>
+  <EntityType Name="PHIEUKHAMBENH">
+    <Key>
+      <PropertyRef Name="MaPhieuKham" />
+    </Key>
+    <Property Name="MaPhieuKham" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="TrieuChung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="LoaiBenh" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MaThuoc" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="SoLuongDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="STTKham" Type="Int32" />
+    <Property Name="NgayKham" Type="DateTime" Precision="3" />
+    <Property Name="GioKham" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="MaHD" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="HOADON" Relationship="Self.FK_PHIEUKHAMBENH_HOADON" FromRole="PHIEUKHAMBENH" ToRole="HOADON" />
+    <NavigationProperty Name="THUOC" Relationship="Self.FK_PHIEUKHAMBENH_THUOC" FromRole="PHIEUKHAMBENH" ToRole="THUOC" />
+    <NavigationProperty Name="QLBENHNHANs" Relationship="Self.FK_QLBENHNHAN_PHIEUKHAMBENH" FromRole="PHIEUKHAMBENH" ToRole="QLBENHNHAN" />
+  </EntityType>
+  <EntityType Name="QLBENHNHAN">
+    <Key>
+      <PropertyRef Name="MaBN" />
+    </Key>
+    <Property Name="MaBN" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="3" />
+    <Property Name="DiaChi" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Sdt" Type="String" MaxLength="12" FixedLength="true" Unicode="true" />
+    <Property Name="MaPhieuKham" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="HOADONs" Relationship="Self.FK_HOADON_QLBENHNHAN" FromRole="QLBENHNHAN" ToRole="HOADON" />
+    <NavigationProperty Name="PHIEUKHAMBENH" Relationship="Self.FK_QLBENHNHAN_PHIEUKHAMBENH" FromRole="QLBENHNHAN" ToRole="PHIEUKHAMBENH" />
+    <NavigationProperty Name="QLLiches" Relationship="Self.FK_QLLich_QLBENHNHAN" FromRole="QLBENHNHAN" ToRole="QLLich" />
+  </EntityType>
+  <EntityType Name="QLLich">
+    <Key>
+      <PropertyRef Name="MaLich" />
+    </Key>
+    <Property Name="MaLich" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="MaBN" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="NgayDatLich" Type="DateTime" Precision="3" />
+    <Property Name="GioDatLich" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="QLBENHNHAN" Relationship="Self.FK_QLLich_QLBENHNHAN" FromRole="QLLich" ToRole="QLBENHNHAN" />
+  </EntityType>
+  <EntityType Name="QLTaiKhoan">
+    <Key>
+      <PropertyRef Name="Username" />
+    </Key>
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="THUOC">
+    <Key>
+      <PropertyRef Name="MaThuoc" />
+    </Key>
+    <Property Name="MaThuoc" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+    <Property Name="TenThuoc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CachDung" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DonVi" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="GiaThuoc" Type="Int32" />
+    <Property Name="HanSuDung" Type="DateTime" Precision="3" />
+    <Property Name="SoLuongTrongKho" Type="Int32" />
+    <NavigationProperty Name="PHIEUKHAMBENHs" Relationship="Self.FK_PHIEUKHAMBENH_THUOC" FromRole="THUOC" ToRole="PHIEUKHAMBENH" />
+  </EntityType>
+  <Association Name="FK_HOADON_QLBENHNHAN">
+    <End Role="QLBENHNHAN" Type="Self.QLBENHNHAN" Multiplicity="0..1" />
+    <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QLBENHNHAN">
+        <PropertyRef Name="MaBN" />
+      </Principal>
+      <Dependent Role="HOADON">
+        <PropertyRef Name="MaBN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHIEUKHAMBENH_HOADON">
+    <End Role="HOADON" Type="Self.HOADON" Multiplicity="0..1" />
+    <End Role="PHIEUKHAMBENH" Type="Self.PHIEUKHAMBENH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HOADON">
+        <PropertyRef Name="MaHD" />
+      </Principal>
+      <Dependent Role="PHIEUKHAMBENH">
+        <PropertyRef Name="MaHD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_PHIEUKHAMBENH_THUOC">
+    <End Role="THUOC" Type="Self.THUOC" Multiplicity="0..1" />
+    <End Role="PHIEUKHAMBENH" Type="Self.PHIEUKHAMBENH" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="THUOC">
+        <PropertyRef Name="MaThuoc" />
+      </Principal>
+      <Dependent Role="PHIEUKHAMBENH">
+        <PropertyRef Name="MaThuoc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QLBENHNHAN_PHIEUKHAMBENH">
+    <End Role="PHIEUKHAMBENH" Type="Self.PHIEUKHAMBENH" Multiplicity="0..1" />
+    <End Role="QLBENHNHAN" Type="Self.QLBENHNHAN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PHIEUKHAMBENH">
+        <PropertyRef Name="MaPhieuKham" />
+      </Principal>
+      <Dependent Role="QLBENHNHAN">
+        <PropertyRef Name="MaPhieuKham" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_QLLich_QLBENHNHAN">
+    <End Role="QLBENHNHAN" Type="Self.QLBENHNHAN" Multiplicity="0..1" />
+    <End Role="QLLich" Type="Self.QLLich" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="QLBENHNHAN">
+        <PropertyRef Name="MaBN" />
+      </Principal>
+      <Dependent Role="QLLich">
+        <PropertyRef Name="MaBN" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBE_QLPMT" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BAOCAODOANHTHUs" EntityType="Self.BAOCAODOANHTHU" />
+    <EntitySet Name="BAOCAODUNGTHUOCs" EntityType="Self.BAOCAODUNGTHUOC" />
+    <EntitySet Name="HOADONs" EntityType="Self.HOADON" />
+    <EntitySet Name="PHIEUKHAMBENHs" EntityType="Self.PHIEUKHAMBENH" />
+    <EntitySet Name="QLBENHNHANs" EntityType="Self.QLBENHNHAN" />
+    <EntitySet Name="QLLiches" EntityType="Self.QLLich" />
+    <EntitySet Name="QLTaiKhoans" EntityType="Self.QLTaiKhoan" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="THUOCs" EntityType="Self.THUOC" />
+    <AssociationSet Name="FK_HOADON_QLBENHNHAN" Association="Self.FK_HOADON_QLBENHNHAN">
+      <End Role="QLBENHNHAN" EntitySet="QLBENHNHANs" />
+      <End Role="HOADON" EntitySet="HOADONs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHIEUKHAMBENH_HOADON" Association="Self.FK_PHIEUKHAMBENH_HOADON">
+      <End Role="HOADON" EntitySet="HOADONs" />
+      <End Role="PHIEUKHAMBENH" EntitySet="PHIEUKHAMBENHs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_PHIEUKHAMBENH_THUOC" Association="Self.FK_PHIEUKHAMBENH_THUOC">
+      <End Role="THUOC" EntitySet="THUOCs" />
+      <End Role="PHIEUKHAMBENH" EntitySet="PHIEUKHAMBENHs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QLBENHNHAN_PHIEUKHAMBENH" Association="Self.FK_QLBENHNHAN_PHIEUKHAMBENH">
+      <End Role="PHIEUKHAMBENH" EntitySet="PHIEUKHAMBENHs" />
+      <End Role="QLBENHNHAN" EntitySet="QLBENHNHANs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_QLLich_QLBENHNHAN" Association="Self.FK_QLLich_QLBENHNHAN">
+      <End Role="QLBENHNHAN" EntitySet="QLBENHNHANs" />
+      <End Role="QLLich" EntitySet="QLLiches" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
